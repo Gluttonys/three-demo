@@ -1,0 +1,22 @@
+{
+  "name": "three-demo",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "orbit-controls": "^1.2.4",
+    "three": "^0.141.0",
+    "vue": "^3.2.25"
+  },
+  "devDependencies": {
+    "@types/three": "^0.141.0",
+    "@vitejs/plugin-vue": "^2.3.3",
+    "less": "^4.1.3",
+    "typescript": "^4.7.3",
+    "vite": "^2.9.9"
+  }
+}
