@@ -1,10 +1,10 @@
 <template>
-  <Part_02/>
+  <Part_03/>
 </template>
 
 
 <script lang="ts" setup>
-import Part_02 from "./components/Part_02.vue";</script>
+import Part_03 from "./components/Part_03.vue";</script>
 
 
 <style>
