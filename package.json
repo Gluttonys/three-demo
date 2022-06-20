@@ -8,6 +8,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@amap/amap-jsapi-loader": "^1.0.1",
     "orbit-controls": "^1.2.4",
     "three": "^0.141.0",
     "vue": "^3.2.25"
