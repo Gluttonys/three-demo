@@ -6,7 +6,3 @@ declare module "*.jpg";
 
 declare const __dirname: string
 
-interface Window {
-  queue: any
-}
-
