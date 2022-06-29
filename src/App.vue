@@ -11,7 +11,7 @@ import Core from './components/Core/index.vue'
 import {onMounted} from "vue";
 
 onMounted(() => {
-  console.log("hello world")
+  console.log("开工大吉")
 })
 
 </script>
