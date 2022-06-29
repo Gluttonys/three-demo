@@ -16,12 +16,12 @@ const use3D = (elementDom: Element): void => {
   const scene = useScene()
   const baseRender = useBaseRender()
 
-  const cameraPosition: [number, number, number] = [100, 100, 100]
+  const cameraPosition: [number, number, number] = [1000, 1000, 1000]
   const camera = usePerspectiveCamera()
   camera.position.set(...cameraPosition)
   camera.lookAt(scene.position)
 
-  const [_, directionLightHelper] = useDirectionalLight()
+  const [, directionLightHelper] = useDirectionalLight()
   const ambientLight = useAmbientLight()
 
   const orbitControls = useOrbitControls(camera, baseRender.domElement)
