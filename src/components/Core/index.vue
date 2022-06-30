@@ -12,15 +12,21 @@ const threeContainer = ref<HTMLDivElement>(null)
 onMounted(() => use3D(threeContainer.value))
 
 // 具体业务
-const getGround = (): Mesh => {
+const getGround = (): [Mesh, () => void] => {
   const box = new BoxGeometry(1000, 6, 1000)
   const groundMesh = new MeshBasicMaterial({color: '#1d2c3b'})
-  return new Mesh(box, groundMesh)
+  const destroy = () => {
+    box.dispose()
+    groundMesh.dispose()
+  }
+
+  return [new Mesh(box, groundMesh), destroy]
 }
 
 onMounted(() => {
   const scene = useScene()
-  scene.add(getGround())
+  const [groundMesh, groundDestroy] = getGround()
+  scene.add(groundMesh)
 })
 
 
