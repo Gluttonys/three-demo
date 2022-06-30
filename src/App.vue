@@ -1,5 +1,6 @@
 <template>
   <main class="page">
+    <Controller/>
     <Core/>
 
   </main>
@@ -8,6 +9,7 @@
 
 <script lang="ts" setup>
 import Core from './components/Core/index.vue'
+import Controller from './components/Controller/index.vue'
 import {onMounted} from "vue";
 
 onMounted(() => {

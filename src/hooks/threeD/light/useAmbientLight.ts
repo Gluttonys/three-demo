@@ -15,7 +15,7 @@ const useAmbientLight = () => {
   return (color?: ColorRepresentation, intensity?: number): AmbientLight => {
     if (ambientLight) return ambientLight
 
-    ambientLight = new AmbientLight(color || 0xffffff, intensity || 1)
+    ambientLight = new AmbientLight(color || '#ffffff', intensity || 1)
     return ambientLight
   }
 }

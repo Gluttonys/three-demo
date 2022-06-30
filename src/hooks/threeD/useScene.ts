@@ -1,4 +1,5 @@
 import {AxesHelper, Scene} from 'three'
+import {AXES_HELPER_NAME} from "../../constant/common";
 
 
 /**
@@ -11,7 +12,9 @@ const useScene = () => {
     if (scene) return scene
 
     scene = new Scene()
-    if (withHelper) scene.add(new AxesHelper(1000))
+    const axes = new AxesHelper(1000)
+    axes.name = AXES_HELPER_NAME
+    if (withHelper) scene.add(axes)
     return scene
   }
 }

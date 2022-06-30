@@ -16,6 +16,7 @@ const usePerspectiveCamera = () => {
     const {innerWidth, innerHeight} = window
 
     perspectiveCamera = new PerspectiveCamera(70, innerWidth / innerHeight, 0.1, 10000)
+
     return perspectiveCamera
   }
 }

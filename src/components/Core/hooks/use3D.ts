@@ -21,7 +21,7 @@ const use3D = (elementDom: Element): void => {
   camera.position.set(...cameraPosition)
   camera.lookAt(scene.position)
 
-  const [, directionLightHelper] = useDirectionalLight()
+  const [dirLight, directionLightHelper] = useDirectionalLight()
   const ambientLight = useAmbientLight()
 
   const orbitControls = useOrbitControls(camera, baseRender.domElement)
@@ -32,7 +32,11 @@ const use3D = (elementDom: Element): void => {
    */
   const integrate = () => {
     /** 添加光源 */
-    scene.add(ambientLight, directionLightHelper)
+    scene.add(
+      ambientLight,
+      dirLight,
+      // directionLightHelper
+    )
     elementDom.appendChild(baseRender.domElement)
 
     window.addEventListener('resize', () => {

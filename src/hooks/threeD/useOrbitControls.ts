@@ -9,10 +9,10 @@ const useOrbitControls = () => {
 
     orbitControls = new OrbitControls(camera, domElement)
 
-    orbitControls.enableDamping = true
-    orbitControls.dampingFactor = 0.05
-    orbitControls.screenSpacePanning = false
-    orbitControls.maxPolarAngle = Math.PI / 2
+    // orbitControls.enableDamping = true
+    // orbitControls.dampingFactor = 0.05
+    // orbitControls.screenSpacePanning = false
+    // orbitControls.maxPolarAngle = Math.PI / 2
     orbitControls.listenToKeyEvents(window)
     return orbitControls
   }
