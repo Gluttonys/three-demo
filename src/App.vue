@@ -1,31 +1,31 @@
 <template>
-  <main class="page">
-    <Controller/>
-    <Core/>
-
-  </main>
+  <main ref="container" class="container w-full h-full"/>
 </template>
 
 
 <script lang="ts" setup>
-import Core from './components/Core/index.vue'
-import Controller from './components/Controller/index.vue'
-import {onMounted} from "vue";
 
+import {onMounted, ref} from "vue";
+import Init3D from "./utils/init3D";
+import objLoader from "./utils/objLoader";
+
+
+const container = ref<HTMLElement>(null)
+
+/* 初始化3D场景 */
 onMounted(() => {
-  console.log("开工大吉")
+  window.threeDObj = new Init3D(container.value)
+  window.threeDObj.baseCamera.position.set(200, 200, 200)
 })
+
+/* 加载模型 */
+onMounted(() => objLoader(
+    "/models/town/Townoq6GBiipX9dNVysr.obj",
+    "/models/town/Town.mtl",
+    window.threeDObj.scene
+))
+
 
 </script>
 
 
-<style lang="less" scoped>
-.page {
-  position : relative;
-  width    : 100vw;
-  height   : 100vh;
-  overflow : hidden;
-
-}
-
-</style>

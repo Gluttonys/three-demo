@@ -1,8 +1,12 @@
 /**
  * @desc 定义全局模块， 常量声明文件
  */
+import Init3D from "./utils/init3D";
 
-declare module "*.jpg";
+declare global {
 
-declare const __dirname: string
+  interface Window {
+    threeDObj: Init3D
+  }
 
+}
