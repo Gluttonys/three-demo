@@ -9,7 +9,11 @@
       "ES7",
       "ESNext",
       "DOM"
-    ]
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
   },
   "exclude": [
     "node_modules"

@@ -137,6 +137,11 @@
     "@vue/compiler-dom" "3.2.37"
     "@vue/shared" "3.2.37"
 
+"@vue/devtools-api@^6.1.4":
+  version "6.4.3"
+  resolved "https://registry.yarnpkg.com/@vue/devtools-api/-/devtools-api-6.4.3.tgz#784aa9e397adde727ca892c3574f5f1cfb2bc1c2"
+  integrity sha512-9WCRwdROJvWcHAdyrR7SZMM/qUvllDZnpndHXokThkUsjnJ2xe4/pvsH9FZrxFe22L+JmDKczL79HjLJ7DK9rg==
+
 "@vue/reactivity-transform@3.2.37":
   version "3.2.37"
   resolved "https://registry.npmjs.org/@vue/reactivity-transform/-/reactivity-transform-3.2.37.tgz"
@@ -203,6 +208,11 @@ acorn@^7.0.0:
   version "7.4.1"
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-7.4.1.tgz#feaed255973d2e77555b83dbc08851a6c63520fa"
   integrity sha512-nQyp0o1/mNdbTO1PO6kHkwSrmgZ0MT/jCCpNiwbUjGoRN4dlBhqJtoQuCnEOKzgTVwg0ZWiCoQy6SxMebQVh8A==
+
+animate.css@^4.1.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/animate.css/-/animate.css-4.1.1.tgz#614ec5a81131d7e4dc362a58143f7406abd68075"
+  integrity sha512-+mRmCTv6SbCmtYJCN4faJMNFVNN5EuCTTprDTAo7YzIGji2KADmakjVA3+8mVDkZ2Bf09vayB35lSQIex2+QaQ==
 
 ant-design-vue@^3.2.9:
   version "3.2.9"
@@ -1184,6 +1194,13 @@ vite@^2.9.9:
     rollup "^2.59.0"
   optionalDependencies:
     fsevents "~2.3.2"
+
+vue-router@4:
+  version "4.1.5"
+  resolved "https://registry.yarnpkg.com/vue-router/-/vue-router-4.1.5.tgz#256f597e3f5a281a23352a6193aa6e342c8d9f9a"
+  integrity sha512-IsvoF5D2GQ/EGTs/Th4NQms9gd2NSqV+yylxIyp/OYp8xOwxmU8Kj/74E9DTSYAyH5LX7idVUngN3JSj1X4xcQ==
+  dependencies:
+    "@vue/devtools-api" "^6.1.4"
 
 vue-types@^3.0.0:
   version "3.0.2"

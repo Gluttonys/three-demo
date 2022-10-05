@@ -1,0 +1,194 @@
+@keyframes progressive-1 {
+  from {
+    opacity : 0;
+  }
+
+  70% {
+    opacity   : 1;
+    transform : scale(1.2) translate(-15px, -15px);
+  }
+
+  to {
+    opacity   : 0;
+    transform : scale(1.2) translate(-15px, -15px);
+  }
+}
+
+
+@keyframes progressive-2 {
+  from {
+    opacity : 0;
+  }
+
+  70% {
+    opacity   : 1;
+    transform : scale(1.2) translate(-12px, -16px);
+  }
+
+  to {
+    opacity   : 0;
+    transform : scale(1.2) translate(-12px, -16px);
+  }
+}
+
+@keyframes progressive-3 {
+  from {
+    opacity : 0;
+  }
+
+  70% {
+    opacity   : 1;
+    transform : scale(1.2) translate(-9px, -17px);
+  }
+
+  to {
+    opacity   : 0;
+    transform : scale(1.2) translate(-9px, -17px);
+  }
+}
+
+@keyframes progressive-4 {
+  from {
+    opacity : 0;
+  }
+
+  70% {
+    opacity   : 1;
+    transform : scale(1.2) translate(-6px, -18px);
+  }
+
+  to {
+    opacity   : 0;
+    transform : scale(1.2) translate(-6px, -18px);
+  }
+}
+
+@keyframes progressive-5 {
+  from {
+    opacity : 0;
+  }
+
+  70% {
+    opacity   : 1;
+    transform : scale(1.2) translate(-3px, -19px);
+  }
+
+  to {
+    opacity   : 0;
+    transform : scale(1.2) translate(-3px, -19px);
+  }
+}
+
+
+@keyframes progressive-6 {
+  from {
+    opacity : 0;
+  }
+
+  70% {
+    opacity   : 1;
+    transform : scale(1.2) translate(0, -20px);
+  }
+
+  to {
+    opacity   : 0;
+    transform : scale(1.2) translate(0, -20px);
+  }
+}
+
+@keyframes progressive-7 {
+  from {
+    opacity : 0;
+  }
+
+  70% {
+    opacity   : 1;
+    transform : scale(1.2) translate(3px, -19px);
+  }
+
+  to {
+    opacity   : 0;
+    transform : scale(1.2) translate(3px, -19px);
+  }
+}
+
+
+@keyframes progressive-8 {
+  from {
+    opacity : 0;
+  }
+
+  70% {
+    opacity   : 1;
+    transform : scale(1.2) translate(6px, -18px);
+  }
+
+  to {
+    opacity   : 0;
+    transform : scale(1.2) translate(6px, -18px);
+  }
+}
+
+@keyframes progressive-9 {
+  from {
+    opacity : 0;
+  }
+
+  70% {
+    opacity   : 1;
+    transform : scale(1.2) translate(9px, -17px);
+  }
+
+  to {
+    opacity   : 0;
+    transform : scale(1.2) translate(9px, -17px);
+  }
+}
+
+@keyframes progressive-10 {
+  from {
+    opacity : 0;
+  }
+
+  70% {
+    opacity   : 1;
+    transform : scale(1.2) translate(12px, -16px);
+  }
+
+  to {
+    opacity   : 0;
+    transform : scale(1.2) translate(12px, -16px);
+  }
+}
+
+@keyframes progressive-11 {
+  from {
+    opacity : 0;
+  }
+
+  70% {
+    opacity   : 1;
+    transform : scale(1.2) translate(15px, -15px);
+  }
+
+  to {
+    opacity   : 0;
+    transform : scale(1.2) translate(15px, -15px);
+  }
+}
+
+
+.active {
+  animation-name            : "progressive";
+  animation-duration        : .8s;
+  animation-fill-mode       : forwards;
+  animation-iteration-count : 1;
+  animation-timing-function : ease-out;
+}
+
+
+
+
+
+
+

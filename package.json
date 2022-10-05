@@ -9,12 +9,14 @@
   },
   "dependencies": {
     "@amap/amap-jsapi-loader": "^1.0.1",
+    "animate.css": "^4.1.1",
     "ant-design-vue": "^3.2.9",
     "lodash": "^4.17.21",
     "orbit-controls": "^1.2.4",
     "three": "^0.141.0",
     "three-mtl-loader": "^1.0.2",
-    "vue": "^3.2.25"
+    "vue": "^3.2.25",
+    "vue-router": "4"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.186",
