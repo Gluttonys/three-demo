@@ -1,5 +1,5 @@
 <template>
-  <main ref="container" class="container w-full h-full"/>
+  <main ref="container" class="w-full h-full"/>
 </template>
 
 
@@ -24,7 +24,6 @@ onMounted(() => objLoader(
     "/models/town/Town.mtl",
     window.threeDObj.scene
 ))
-
 
 </script>
 

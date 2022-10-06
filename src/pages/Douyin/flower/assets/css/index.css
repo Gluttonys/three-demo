@@ -187,8 +187,25 @@
 }
 
 
+.text-active-level-1 {
+  font-size : 20px !important;
+  color     : #afafaf !important;
+}
 
+.text-active-level-2 {
+  font-size : 23px !important;
+  color     : #a08787 !important;
+}
 
+.text-active-level-3 {
+  font-size : 27px !important;
+  color     : #a46565 !important;
+}
+
+.text-active-level-4 {
+  font-size : 30px !important;
+  color     : #a14b4b !important;
+}
 
 
 

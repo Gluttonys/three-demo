@@ -46,6 +46,9 @@ class Flowering {
     active: false
   }
 
+  /* 事件函数引用 */
+  eventReferences: (event: MouseEvent) => void
+
   /* 是否显示计数器 */
 
   // private showLabel: boolean = true
@@ -54,7 +57,10 @@ class Flowering {
     this.container = container
     this.fillingImgs()
     this.initText()
-    this.container.addEventListener('click', event => this.containerClick(event))
+
+    this.eventReferences = this.containerClick.bind(this)
+
+    this.container.addEventListener('click', this.eventReferences)
   }
 
   /* 初始化计数文字标签 */
@@ -64,15 +70,28 @@ class Flowering {
       color: '#ffffff',
       fontWeight: '900',
       position: 'absolute',
-      width: '100px',
+      width: '120px',
       height: '14px',
       fontStyle: 'italic'
-      // opacity: '0'
     }
 
     Object.keys(textWrapStyle).forEach(styleKey => this.textObj.dom.style[styleKey] = textWrapStyle[styleKey])
     this.container.append(this.textObj.dom)
   }
+
+  /* 获取文字对应类名 */
+  computedTextSize(count: number): string {
+    if (count <= 20) {
+      return "text-active-level-1"
+    } else if (count <= 50) {
+      return "text-active-level-2"
+    } else if (count <= 100) {
+      return "text-active-level-3"
+    } else {
+      return "text-active-level-4"
+    }
+  }
+
 
   containerClick(event: MouseEvent) {
     this.counter = (event.timeStamp - this.preTimeStamp >= this.gapTime)
@@ -106,15 +125,16 @@ class Flowering {
       randomImgObj.active = false
     }, 7_00)
 
+    const textClass = this.computedTextSize(this.counter)
     if (this.textObj.active) return
     this.textObj.dom.style.left = `${x}px`
     this.textObj.dom.style.top = `${y - 70}px`
-    this.textObj.dom.innerText = `X ${this.counter}`
-    this.textObj.dom.classList.add("animate__animated", "animate__lightSpeedInLeft")
+    this.textObj.dom.innerText = `x ${this.counter}`
+    this.textObj.dom.classList.add("animate__animated", "animate__lightSpeedInLeft", textClass)
     this.textObj.active = true
 
     delay(() => {
-      this.textObj.dom.classList.remove("animate__animated", "animate__lightSpeedInLeft")
+      this.textObj.dom.classList.remove("animate__animated", "animate__lightSpeedInLeft", textClass)
       this.textObj.dom.style.opacity = '0'
       this.textObj.active = false
     }, 9_00)
@@ -149,6 +169,17 @@ class Flowering {
     this.container.append(this.imgContainer)
   }
 
+  /* 销毁特效 */
+  dispose() {
+    this.container.removeEventListener('click', this.eventReferences)
+
+    this.imgContainer.innerHTML = ''
+    this.imgDomList = []
+    this.preImage = null
+
+    this.imgContainer.remove()
+    this.textObj.dom.remove()
+  }
 }
 
 

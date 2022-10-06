@@ -10,7 +10,6 @@ import {
   SpotLight,
   WebGLRenderer
 } from "three";
-import {CSS2DRenderer} from "three/examples/jsm/renderers/CSS2DRenderer";
 import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
 import {DragControls} from "three/examples/jsm/controls/DragControls";
 import {noop} from "lodash"
@@ -23,7 +22,7 @@ class Init3D {
   scene: Scene = new Scene()
   axes: AxesHelper = new AxesHelper(1000)
   baseRenderer: WebGLRenderer = new WebGLRenderer({antialias: true})
-  css2DRenderer: CSS2DRenderer = new CSS2DRenderer()
+  // css2DRenderer: CSS2DRenderer = new CSS2DRenderer()
   // gridHelper: GridHelper = new GridHelper(GRID_WIDTH, GRID_DIVISIONS, 'red')
   baseCamera: PerspectiveCamera = new PerspectiveCamera(70, this.width / this.height, 0.1, 5000)
 
@@ -104,14 +103,14 @@ class Init3D {
 
   /** 初始化(2D / webGL)渲染器 */
   initRender() {
-    this.css2DRenderer.domElement.style.position = "absolute"
-    this.css2DRenderer.domElement.style.zIndex = "5"
-    this.css2DRenderer.domElement.style.top = "0"
-
-    this.css2DRenderer.setSize(this.width, this.height)
+    // this.css2DRenderer.domElement.style.position = "absolute"
+    // this.css2DRenderer.domElement.style.zIndex = "5"
+    // this.css2DRenderer.domElement.style.top = "0"
+    //
+    // this.css2DRenderer.setSize(this.width, this.height)
 
     this.containerDom.appendChild(this.baseRenderer.domElement)
-    this.containerDom.appendChild(this.css2DRenderer.domElement)
+    // this.containerDom.appendChild(this.css2DRenderer.domElement)
   }
 
   /** 初始化摄像头 */
@@ -193,7 +192,7 @@ class Init3D {
     const reRender = () => {
       try {
         this.baseRenderer.render(this.scene, this.baseCamera)
-        this.css2DRenderer.render(this.scene, this.baseCamera)
+        // this.css2DRenderer.render(this.scene, this.baseCamera)
       } catch (e) {
         noop(e)
       }
