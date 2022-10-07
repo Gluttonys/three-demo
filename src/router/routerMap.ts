@@ -16,14 +16,19 @@ const routerMap: RouteRecordRaw[] = [
     component: () => import('../pages/Douyin/index.vue'),
   },
   {
-    path: '/CSS-aspect-ratio',
+    path: '/css-aspect-ratio',
     name: "CSS横纵比【aspect-ratio】",
     component: () => import('../pages/CSSAspectRatio/index.vue'),
   },
   {
-    path: '/CSS-clip-path',
+    path: '/css-clip-path',
     name: "CSS裁剪【clip-path】",
     component: () => import('../pages/CSSClip/index.vue'),
+  },
+  {
+    path: '/smart-island',
+    name: "灵动岛效果",
+    component: () => import('../pages/SmartIsland/index.vue'),
   }
 ]
 

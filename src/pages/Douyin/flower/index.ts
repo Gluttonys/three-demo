@@ -39,7 +39,7 @@ class Flowering {
   /* 上一次出现的图片对象 */
   preImage: ImageEnhancement = null
   container: HTMLElement
-  imgContainer: HTMLElement = createElement<HTMLElement>('div')
+  // imgContainer: HTMLElement = createElement<HTMLElement>('div')
 
   textObj: ParagraphEnhancement = {
     dom: createElement<HTMLParagraphElement>('p'),
@@ -99,7 +99,7 @@ class Flowering {
       : this.counter + 1
 
     /* 点击位置 */
-    const {clientX: x, clientY: y} = event
+    const {pageX: x, pageY: y} = event
 
     let preIndex: number = -1
     if (!isNull(this.preImage)) preIndex = this.preImage.idx
@@ -145,7 +145,7 @@ class Flowering {
   fillingImgs(images?: string[]) {
     if (!isUndefined(images) && images.length < 2) throw new Error("传入的图片不能少于两张")
 
-    this.imgContainer.innerHTML = ""
+    forEach(this.imgDomList, imgObj => imgObj.dom.remove())
     this.imgDomList = []
     this.preImage = null
 
@@ -155,6 +155,7 @@ class Flowering {
       width: '60px',
       height: '60px',
       position: 'absolute',
+      zIndex: '9',
       opacity: '0',
       userSelect: 'none'
     }
@@ -164,20 +165,18 @@ class Flowering {
       Object.keys(imgStyle).forEach(key => imgDom.style[key] = imgStyle[key])
 
       this.imgDomList.push({dom: imgDom, active: false, idx: index})
-      this.imgContainer.append(imgDom)
+      this.container.insertAdjacentElement("beforeend", imgDom)
     })
-    this.container.append(this.imgContainer)
   }
 
   /* 销毁特效 */
   dispose() {
     this.container.removeEventListener('click', this.eventReferences)
 
-    this.imgContainer.innerHTML = ''
+    forEach(this.imgDomList, imgObj => imgObj.dom.remove())
     this.imgDomList = []
     this.preImage = null
 
-    this.imgContainer.remove()
     this.textObj.dom.remove()
   }
 }

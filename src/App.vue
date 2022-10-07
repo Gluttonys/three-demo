@@ -1,7 +1,7 @@
 <template>
   <main class="w-screen h-screen flex">
 
-    <a-menu class="h-screen" mode="inline" style="width: 256px" theme="dark">
+    <a-menu v-model:selected-keys="selectMenuKey" class="h-screen" mode="inline" style="width: 256px" theme="dark">
       <a-menu-item
           v-for="route in legalRouterMap"
           :key="route.path"
@@ -22,7 +22,7 @@
 
 <script lang="ts" setup>
 import routerMap from "@/router/routerMap";
-import {computed} from "vue";
+import {computed, ref} from "vue";
 import {eq, forEach} from "lodash";
 import {RouteRecordRaw} from "vue-router";
 import router from "@/router";
@@ -39,6 +39,8 @@ const legalRouterMap = computed(() => {
 
   return legal
 })
+
+const selectMenuKey = ref([location.pathname])
 
 
 </script>
