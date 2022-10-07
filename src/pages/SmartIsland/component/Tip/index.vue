@@ -11,9 +11,10 @@
 <script lang="ts" setup>
 import {Component, computed, ref, shallowRef} from "vue";
 import * as dayjs from "dayjs";
+import {onBeforeRouteLeave} from "vue-router";
 
 const curTime = ref(dayjs().format("YY M D H : m : ss"))
-setInterval(() => curTime.value = dayjs().format("YY M D H : m : ss"), 1_000)
+const timer = setInterval(() => curTime.value = dayjs().format("YY M D H : m : ss"), 1_000)
 
 type IslandMessage = {
   width: number,
@@ -57,6 +58,8 @@ const closeMessage = () => {
   }
 }
 
+
+onBeforeRouteLeave(() => clearInterval(timer))
 
 defineExpose({
   sendMessage,

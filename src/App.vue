@@ -40,7 +40,7 @@ const legalRouterMap = computed(() => {
   return legal
 })
 
-const selectMenuKey = ref([location.pathname])
+const selectMenuKey = ref([eq(location.pathname, '/') ? '/douyin' : location.pathname])
 
 
 </script>

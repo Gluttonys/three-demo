@@ -16,6 +16,11 @@ const routerMap: RouteRecordRaw[] = [
     component: () => import('../pages/Douyin/index.vue'),
   },
   {
+    path: '/html-dialog',
+    name: "HTML dialog 标签",
+    component: () => import('../pages/Dialog/index.vue'),
+  },
+  {
     path: '/css-aspect-ratio',
     name: "CSS横纵比【aspect-ratio】",
     component: () => import('../pages/CSSAspectRatio/index.vue'),
@@ -29,7 +34,7 @@ const routerMap: RouteRecordRaw[] = [
     path: '/smart-island',
     name: "灵动岛效果",
     component: () => import('../pages/SmartIsland/index.vue'),
-  }
+  },
 ]
 
 
