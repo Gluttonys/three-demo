@@ -54,8 +54,8 @@ const closeDialog = () => {
 </script>
 
 <style lang="less" scoped>
+
 .dialog {
-  transform : "";
 
   &::backdrop {
     backdrop-filter  : blur(4px);

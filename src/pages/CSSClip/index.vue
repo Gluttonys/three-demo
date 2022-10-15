@@ -65,4 +65,3 @@
 
 <script lang="ts" setup>
 import image from '@/assets/img/1.png'</script>
-

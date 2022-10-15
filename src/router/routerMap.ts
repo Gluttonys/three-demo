@@ -13,7 +13,14 @@ const routerMap: RouteRecordRaw[] = [
   {
     path: '/douyin',
     name: "抖音直播点赞特效",
-    component: () => import('../pages/Douyin/index.vue'),
+    // component: () => import('../pages/Douyin/index.vue'),
+    children: [
+      {
+        path: "/douyin/test",
+        name: "测试子菜单",
+        component: () => import('../pages/Douyin/index.vue'),
+      }
+    ]
   },
   {
     path: '/html-dialog',
@@ -35,6 +42,11 @@ const routerMap: RouteRecordRaw[] = [
     name: "灵动岛效果",
     component: () => import('../pages/SmartIsland/index.vue'),
   },
+  {
+    path: '/typescript-interface',
+    name: "ts获取接口指定类型",
+    component: () => import('../pages/TypescriptInterface/index.vue'),
+  }
 ]
 
 

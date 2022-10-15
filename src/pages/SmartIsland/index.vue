@@ -1,7 +1,18 @@
 <template>
   <main class="w-full h-full p-4 bg-gray-200 flex">
-    <section class="phone relative bg-gray-400 shadow rounded overflow-hidden">
+    <section class="phone relative bg-gray-400 shadow rounded overflow-auto">
       <Tip ref="smartIsland"/>
+
+      Lorem ipsum dolor sit amet,
+      <p class="px-4 text-justify">consectetur adipisicing elit. Accusantium consectetur dolores earum eos facilis
+        iure, nostrum placeat repellendus sed voluptatibus. Consectetur dolorem doloremque dolorum ea eos hic incidunt
+        ipsa iste, iure, modi nemo nisi porro qui quia, quod reiciendis repudiandae totam voluptas voluptatem
+        voluptatum? Ab aperiam asperiores at beatae dolor dolore dolorum fugiat id in ipsum, iste libero magni molestias
+        necessitatibus nihil officia quasi quibusdam sunt velit voluptatem? Alias at commodi cupiditate dolores
+        excepturi, fuga maiores numquam placeat praesentium repellendus sequi ut vel voluptatibus. Ad itaque molestiae
+        nam optio veniam! Aliquid aut consectetur dicta error explicabo, incidunt quod sequi! A amet architecto autem
+      </p>
+
     </section>
 
     <section class="ml-12">
@@ -37,7 +48,7 @@ const smartIsland = ref<InstanceType<typeof Tip>>()
 
 const sendMessageDouyin = () => {
   smartIsland.value.sendMessage({
-    width: 95,
+    width: 90,
     height: 70,
     timeStamp: new Date().getTime(),
     component: Douyin,

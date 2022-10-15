@@ -13,8 +13,8 @@ import {Component, computed, ref, shallowRef} from "vue";
 import * as dayjs from "dayjs";
 import {onBeforeRouteLeave} from "vue-router";
 
-const curTime = ref(dayjs().format("YY M D H : m : ss"))
-const timer = setInterval(() => curTime.value = dayjs().format("YY M D H : m : ss"), 1_000)
+const curTime = ref(dayjs().format("YY M D H : mm : ss"))
+const timer = setInterval(() => curTime.value = dayjs().format("YY M D H : mm : ss"), 1_000)
 
 type IslandMessage = {
   width: number,
@@ -74,12 +74,11 @@ defineExpose({
   position                   : absolute;
   top                        : 10px;
   left                       : 10px;
-
   display                    : inline-block;
   padding-left               : 1em;
   padding-right              : 1em;
   border-radius              : 1em;
-  background-color           : rgba(0, 0, 0, .5);
+  background-color           : rgba(0, 0, 0, .8);
   color                      : aliceblue;
 
   line-height                : 2em;

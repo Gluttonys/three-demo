@@ -1,13 +1,23 @@
 <template>
   <main class="w-screen h-screen flex">
 
-    <a-menu v-model:selected-keys="selectMenuKey" class="h-screen" mode="inline" style="width: 256px" theme="dark">
-      <a-menu-item
-          v-for="route in legalRouterMap"
-          :key="route.path"
-          @click="router.push(route.path)">
-        <span>{{ route.name }}</span>
-      </a-menu-item>
+    <a-menu v-model:selected-keys="selectMenuKey" class="h-screen" style="width: 256px" theme="dark">
+
+      <template v-for="menu in legalRouterMap" :key="menu.path">
+        <a-menu-item v-if="!menu.children?.length" :key="menu.path" @click="router.push(menu.path)">
+          <span>{{ menu.name }}</span>
+        </a-menu-item>
+
+        <a-sub-menu v-else :key="menu.path" :title="menu.name">
+          <a-menu-item
+              v-for="sonRoute in menu.children"
+              :key="sonRoute.path"
+              @click="router.push(sonRoute.path)">
+            {{ sonRoute.name }}
+          </a-menu-item>
+        </a-sub-menu>
+      </template>
+
     </a-menu>
 
     <section class="overflow-hidden p-4 shadow" style="height: 100vh;width: calc(100vw - 256px)">

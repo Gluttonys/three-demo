@@ -32,7 +32,6 @@ import one from '@/assets/img/1.png'
 import two from '@/assets/img/2.png'
 import three from '@/assets/img/3.png'
 import videoPath from '@/assets/video/test.mp4'
-import {delay} from "lodash";
 
 
 const container = ref<HTMLElement>(null)
@@ -44,10 +43,10 @@ onMounted(() => {
   const second = new Flowering(unref(container1))
   new Flowering(unref(container2)).fillingImgs([one, two, three])
 
-  delay(() => {
-    console.log("销毁特效")
-    second.dispose()
-  }, 3_000)
+  // delay(() => {
+  //   console.log("销毁特效")
+  //   second.dispose()
+  // }, 3_000)
 })
 
 
