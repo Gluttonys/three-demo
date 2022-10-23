@@ -46,7 +46,43 @@ const routerMap: RouteRecordRaw[] = [
     path: '/typescript-interface',
     name: "ts获取接口指定类型",
     component: () => import('../pages/TypescriptInterface/index.vue'),
-  }
+  },
+  {
+    path: '/img-lazy',
+    name: "图片 lazy 属性",
+    component: () => import('../pages/ImgLazy/index.vue'),
+  },
+  {
+    path: '/cesium',
+    name: "cesium学习",
+    children: [
+      {
+        path: "/cesium/link",
+        name: "学习网站",
+        component: () => import('../pages/cesium/Link/index.vue'),
+      },
+      {
+        path: "/cesium/ins",
+        name: "实例",
+        component: () => import('../pages/cesium/Ins/index.vue'),
+      },
+    ]
+  },
+  {
+    path: '/big-number',
+    name: "大数字",
+    component: () => import('../pages/BigNumber/index.vue'),
+  },
+  {
+    path: '/net-work',
+    name: "自定义接口测试",
+    component: () => import('../pages/NetWork/index.vue'),
+  },
+  {
+    path: '/infinite-scroll',
+    name: "无限滚动",
+    component: () => import('../pages/InfiniteScroll/index.vue'),
+  },
 ]
 
 

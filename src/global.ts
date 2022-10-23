@@ -8,6 +8,7 @@ declare global {
 
   interface Window {
     threeDObj: Init3D
+    CESIUM_BASE_URL: string
   }
 
 }

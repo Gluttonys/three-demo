@@ -7,6 +7,17 @@ import router from '@/router'
 import 'ant-design-vue/dist/antd.css';
 
 import '@/plugins'
+import Mock from '@/mock/index'
+import {eq} from "lodash";
+
+
+// @ts-ignore
+const env = import.meta.env.MODE
+
+if (eq(env, "development")) {
+  new Mock()
+}
+
 
 createApp(App)
   .use(Antd)
