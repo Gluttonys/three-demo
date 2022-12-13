@@ -5,6 +5,7 @@ import cesium from 'vite-plugin-cesium'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+
   resolve: {
     alias: {
       '@': resolve(__dirname, 'src')
@@ -12,7 +13,8 @@ export default defineConfig({
   },
   plugins: [vue(), cesium()],
   server: {
-    port: 8080
-  }
+    port: 8080,
+    hmr: true
+  },
 })
 

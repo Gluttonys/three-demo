@@ -5,7 +5,7 @@
     <section
         v-for="item in data"
         :key="item"
-        class="w-full h-20 bg-gray-400 rounded mb-4 shadow-2xl">
+        class="w-full h-20 bg-gray-400 rounded mb-4 shadow-2xl flex items-center justify-center">
       {{ item.name }}
     </section>
 
@@ -32,7 +32,7 @@ const loadMore = debounce((event: Event) => {
   const {scrollHeight, scrollTop, clientHeight} = wrapper.value
 
   const scrollBottom = scrollHeight - scrollTop - clientHeight
-  if (lte(scrollBottom, 40)) {
+  if (lte(scrollBottom, 40) && lte(data.value.length, 200)) {
     for (let i = 0; i < 10; i++) {
       data.value.push({name: _Mock.Random.name()})
     }

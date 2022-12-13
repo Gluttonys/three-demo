@@ -83,6 +83,11 @@ const routerMap: RouteRecordRaw[] = [
     name: "无限滚动",
     component: () => import('../pages/InfiniteScroll/index.vue'),
   },
+  {
+    path: '/interval',
+    name: "定时器实现",
+    component: () => import('../pages/Interval/index.vue'),
+  },
 ]
 
 

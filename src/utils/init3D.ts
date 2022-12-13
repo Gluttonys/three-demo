@@ -16,8 +16,8 @@ import {noop} from "lodash"
 
 class Init3D {
 
-  width = window.innerWidth
-  height = window.innerHeight
+  width = 1000
+  height = 1000
 
   scene: Scene = new Scene()
   axes: AxesHelper = new AxesHelper(1000)
@@ -48,6 +48,9 @@ class Init3D {
   constructor(domElement: HTMLElement, isDragGroup: boolean = true) {
     this.containerDom = domElement
     this.isDragGroup = isDragGroup
+
+    this.width = this.containerDom.offsetWidth
+    this.height = this.containerDom.offsetHeight
 
     this.initAxes()
     this.initBaseRender()
@@ -84,7 +87,7 @@ class Init3D {
 
   /** 初始化坐标轴 */
   initAxes() {
-    // this.scene.add(this.axes)
+    this.scene.add(this.axes)
     this.scene.position.set(0, 0, 0)
   }
 
@@ -162,8 +165,8 @@ class Init3D {
 
     this.scene.add(
       this.ambientLight,
-      // this.directionalLight,
-      // this.spotLight,
+      this.directionalLight,
+      this.spotLight,
       // new CameraHelper(this.directionalLight.shadow.camera),
       // new CameraHelper(this.spotLight.shadow.camera),
     )
