@@ -14,7 +14,8 @@ export default defineConfig({
   plugins: [vue(), cesium()],
   server: {
     port: 8080,
-    hmr: true
+    hmr: true,
+    watch: {},
   },
 })
 

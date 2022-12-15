@@ -32,7 +32,7 @@ class Init3D {
 
   // 灯光
   ambientLight: AmbientLight = new AmbientLight('#ffffff', 1)
-  directionalLight: DirectionalLight = new DirectionalLight(0xffffff, 0.5)
+  directionalLight: DirectionalLight = new DirectionalLight(0xffffff, 1)
   directionalLightHelper: DirectionalLightHelper
   pointLight: PointLight = new PointLight("#ffffff", 0.5, 1000)
   spotLight: SpotLight = new SpotLight("#ffffff", 0.8)
@@ -87,7 +87,7 @@ class Init3D {
 
   /** 初始化坐标轴 */
   initAxes() {
-    this.scene.add(this.axes)
+    // this.scene.add(this.axes)
     this.scene.position.set(0, 0, 0)
   }
 
@@ -95,7 +95,7 @@ class Init3D {
   initBaseRender() {
     this.baseRenderer.setPixelRatio(window.devicePixelRatio)
     this.baseRenderer.setSize(this.width, this.height)
-    this.baseRenderer.setClearColor('rgb(209,209,209)', 1)
+    this.baseRenderer.setClearColor('rgb(0,0,0)', 1)
 
     /* 预加载渲染 */
     this.baseRenderer.compile(this.scene, this.baseCamera)
@@ -125,20 +125,20 @@ class Init3D {
   initLight() {
     // this.directionalLight.name = ObjectName.DIR_LIGHT
 
-    this.directionalLight.position.set(2000, 2500, 1000)
+    this.directionalLight.position.set(200, 250, 100)
     this.directionalLight.castShadow = true
 
     this.directionalLight.shadow.camera.zoom = 0.2
-    this.directionalLight.shadow.camera.near = 10
-    this.directionalLight.shadow.camera.far = 6000
+    this.directionalLight.shadow.camera.near = 0
+    this.directionalLight.shadow.camera.far = 500
 
-    this.directionalLight.shadow.camera.right = 500;
-    this.directionalLight.shadow.camera.left = -500;
-    this.directionalLight.shadow.camera.top = 500;
-    this.directionalLight.shadow.camera.bottom = -500;
+    this.directionalLight.shadow.camera.right = 50
+    this.directionalLight.shadow.camera.left = -50
+    this.directionalLight.shadow.camera.top = 50
+    this.directionalLight.shadow.camera.bottom = -50
 
-    this.directionalLight.shadow.mapSize.width = 1024;
-    this.directionalLight.shadow.mapSize.height = 1024;
+    this.directionalLight.shadow.mapSize.width = 4096
+    this.directionalLight.shadow.mapSize.height = 4096
 
     this.directionalLightHelper = new DirectionalLightHelper(this.directionalLight, 5, '#d93333')
     // this.directionalLightHelper.name = ObjectName.DIR_LIGHT_HELPER
@@ -166,7 +166,8 @@ class Init3D {
     this.scene.add(
       this.ambientLight,
       this.directionalLight,
-      this.spotLight,
+      // this.directionalLightHelper,
+      // this.spotLight,
       // new CameraHelper(this.directionalLight.shadow.camera),
       // new CameraHelper(this.spotLight.shadow.camera),
     )
@@ -175,6 +176,8 @@ class Init3D {
   /** 初始化控制器 */
   initOrbitControls() {
     this.orbitControls = new OrbitControls(this.baseCamera, this.containerDom)
+    this.orbitControls.enableDamping = true;
+    this.orbitControls.dampingFactor = 0.05;
     this.orbitControls.listenToKeyEvents(window)
   }
 
@@ -195,6 +198,7 @@ class Init3D {
     const reRender = () => {
       try {
         this.baseRenderer.render(this.scene, this.baseCamera)
+        this.orbitControls.update()
         // this.css2DRenderer.render(this.scene, this.baseCamera)
       } catch (e) {
         noop(e)
