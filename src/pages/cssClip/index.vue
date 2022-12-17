@@ -1,10 +1,9 @@
 <template>
 
+  <link-block :links="links"></link-block>
+
   <h1>CSS : clip-path 属性</h1>
-
-  <a-alert message="https://developer.mozilla.org/zh-CN/docs/Web/CSS/clip-path"></a-alert>
-
-
+  
   <section class="flex w-full h-96 bg-gray-400 p-4 mt-4">
     <div class="w-36 h-36 bg-gray-900 mr-4">
       <img
@@ -64,4 +63,14 @@
 </template>
 
 <script lang="ts" setup>
-import image from '@/assets/img/1.png'</script>
+import image from '@/assets/img/1.png'
+import LinkBlock from '@/components/LinkBlock/index.vue'
+
+const links: Base.Link[] = [
+  {
+    title: "MDN",
+    link: "https://developer.mozilla.org/zh-CN/docs/Web/CSS/clip-path"
+  }
+]
+
+</script>

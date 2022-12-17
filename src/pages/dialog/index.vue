@@ -1,5 +1,5 @@
 <template>
-  <a-alert message="站点： https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/dialog"></a-alert>
+  <link-block :links="links" titleName="dialog"></link-block>
 
   <dialog ref="dialogDomRef" class="bg-gray-100 transition w-96 text-justify rounded shadow-xl mt-24 dialog">
     <h1>hello world</h1>
@@ -37,6 +37,17 @@
 <script lang="ts" setup>
 
 import {ref} from "vue";
+
+import LinkBlock from '@/components/LinkBlock/index.vue'
+
+
+const links: Base.Link[] = [
+  {
+    title: "MDN 文档",
+    link: "https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/dialog"
+  }
+]
+
 
 const dialogDomRef = ref<HTMLDialogElement>(null)
 

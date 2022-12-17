@@ -13,6 +13,7 @@ import {
   Interval,
   Link,
   NetWork,
+  ProtoBuf,
   SmartIsland,
   TypescriptInterface
 } from "@/pages";
@@ -21,7 +22,7 @@ import {
 const routerMap: RouteRecordRaw[] = [
   {
     path: '/',
-    redirect: '/douyin'
+    redirect: '/home-page'
   },
   {
     path: '/home-page',
@@ -105,7 +106,11 @@ const routerMap: RouteRecordRaw[] = [
     name: "定时器实现",
     component: Interval,
   },
-
+  {
+    path: '/protobuf',
+    name: "protobuf应用",
+    component: ProtoBuf,
+  }
 ]
 
 

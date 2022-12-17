@@ -1,25 +1,5 @@
 <template>
-
-  <section class="my-4 shadow p-4">
-    <p>
-      <span>事件类型声明列表</span>
-      <a
-          href="https://microsoft.github.io/PowerBI-JavaScript/interfaces/_node_modules_typedoc_node_modules_typescript_lib_lib_dom_d_.event.html"
-          target="_blank">
-        https://microsoft.github.io/PowerBI-JavaScript/interfaces/_node_modules_typedoc_node_modules_typescript_lib_lib_dom_d_.event.html
-      </a>
-    </p>
-
-    <p>
-      <span>图片 mock 网址</span>
-      <a
-          href="https://picsum.photos/"
-          target="_blank">
-        https://picsum.photos/
-      </a>
-    </p>
-
-  </section>
+  <link-block :links="links"></link-block>
 
 
   <section class="h-full w-full bg-gray-300 overflow-auto flex flex-col items-center">
@@ -32,6 +12,20 @@
 
 <script lang="ts" setup>
 import * as _ from "lodash"
+
+import LinkBlock from '@/components/LinkBlock/index.vue'
+
+const links: Base.Link[] = [
+  {
+    title: "事件类型声明列表",
+    link: "https://microsoft.github.io/PowerBI-JavaScript/interfaces/_node_modules_typedoc_node_modules_typescript_lib_lib_dom_d_.event.html"
+  },
+  {
+    title: "图片 mock 网址",
+    link: "https://picsum.photos/"
+  }
+]
+
 
 let count = 0
 

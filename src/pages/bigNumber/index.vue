@@ -1,8 +1,6 @@
 <template>
 
-  <a class="m-4" href="https://mikemcl.github.io/bignumber.js/">big number 官网:
-    https://mikemcl.github.io/bignumber.js/</a>
-
+  <link-block :links="links"></link-block>
 
   <section class="shadow p-4 m-4 flex items-center">
     {{ Number.MAX_SAFE_INTEGER }}
@@ -23,9 +21,18 @@
 </template>
 
 <script lang="ts" setup>
-
 import {ref} from "vue";
 import BigNumber from "bignumber.js";
+
+import LinkBlock from '@/components/LinkBlock/index.vue'
+
+const links: Base.Link[] = [
+  {
+    title: "github",
+    link: "https://mikemcl.github.io/bignumber.js"
+  }
+]
+
 
 const bigNumber = ref<number>(10000000000000000000000100000)
 

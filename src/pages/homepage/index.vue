@@ -1,6 +1,5 @@
 <template>
   <main ref="container" class="w-full h-full"/>
-
 </template>
 
 
@@ -60,17 +59,7 @@ const initCube = () => {
   }
 
   requestAnimationFrame(animation)
-
 }
-
-
-// /* 加载模型 */
-// onMounted(() => objLoader(
-//     "/models/town/Townoq6GBiipX9dNVysr.obj",
-//     "/models/town/Town.mtl",
-//     window.threeDObj.scene
-// ))
-
 </script>
 
 

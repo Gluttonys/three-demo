@@ -18,6 +18,7 @@
     "lodash": "^4.17.21",
     "mockjs": "^1.1.0",
     "orbit-controls": "^1.2.4",
+    "protobufjs": "^7.1.2",
     "three": "^0.141.0",
     "three-mtl-loader": "^1.0.2",
     "vue": "^3.2.25",
