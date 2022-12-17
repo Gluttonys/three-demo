@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+message SomeMessage {
+
+    message Ground {
+        repeated double size = 1;
+        double rotation = 2;
+    }
+
+    message Ground1 {
+        repeated double size = 1;
+        double rotation = 2;
+    }
+
+    message Ground2 {
+        repeated double size = 1;
+        double rotation = 2;
+    }
+
+    message Floors {
+        uint64 id = 1;
+        string name = 2;
+        double height = 3;
+    }
+
+    message Children1 {
+        uint64 id = 1;
+        string name = 2;
+        repeated double center = 3;
+        Ground2 ground = 4;
+        repeated double camera_position = 5;
+        repeated double size = 6;
+        repeated Floors floors = 7;
+    }
+
+    message Children {
+        uint64 id = 1;
+        string name = 2;
+        double center_height = 3;
+        repeated double center = 4;
+        Ground1 ground = 5;
+        repeated double camera_position = 6;
+        repeated double size = 7;
+        repeated Children1 children = 8;
+    }
+
+    uint32 id = 1;
+    string name = 2;
+    double center_height = 3;
+    repeated double center = 4;
+    Ground ground = 5;
+    repeated double camera_position = 6;
+    repeated Children children = 7;
+}

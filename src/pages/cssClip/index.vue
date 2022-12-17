@@ -1,9 +1,8 @@
 <template>
 
-  <link-block :links="links"></link-block>
+  <link-block :links="links" titleName="CSS : clip-path 属性"></link-block>
 
-  <h1>CSS : clip-path 属性</h1>
-  
+
   <section class="flex w-full h-96 bg-gray-400 p-4 mt-4">
     <div class="w-36 h-36 bg-gray-900 mr-4">
       <img

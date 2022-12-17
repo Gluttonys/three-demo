@@ -1,7 +1,11 @@
 <template>
-  <main class="w-screen h-screen flex">
+  <header class="bg-blue-100 flex items-center p-4 text-white"
+          style="height: 60px">
+  </header>
 
-    <a-menu v-model:selected-keys="selectMenuKey" class="h-screen" style="width: 256px" theme="dark">
+  <main class="w-screen flex" style="height: calc(100vh - 60px);">
+
+    <a-menu v-model:selected-keys="selectMenuKey" class="h-full" style="width: 256px" theme="dark">
 
       <template v-for="menu in legalRouterMap" :key="menu.path">
         <a-menu-item v-if="!menu.children?.length" :key="menu.path" @click="router.push(menu.path)">
@@ -17,10 +21,10 @@
           </a-menu-item>
         </a-sub-menu>
       </template>
- 
+
     </a-menu>
 
-    <section class="overflow-hidden p-4 shadow" style="height: 100vh;width: calc(100vw - 256px)">
+    <section class="overflow-hidden p-2 shadow h-full" style="width: calc(100vw - 256px)">
       <router-view v-slot="{ Component }">
         <component :is="Component"/>
       </router-view>

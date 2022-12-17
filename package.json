@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "vite --host",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "convertProtoFile": "npx pbjs -t json-module -w es6 -o src/proto/proto.js src/proto/*.proto"
   },
   "dependencies": {
     "@amap/amap-jsapi-loader": "^1.0.1",
@@ -18,7 +19,7 @@
     "lodash": "^4.17.21",
     "mockjs": "^1.1.0",
     "orbit-controls": "^1.2.4",
-    "protobufjs": "^7.1.2",
+    "protobufjs": "6.8.9",
     "three": "^0.141.0",
     "three-mtl-loader": "^1.0.2",
     "vue": "^3.2.25",
@@ -37,7 +38,8 @@
     "tailwindcss": "^3.1.4",
     "typescript": "^4.7.3",
     "vite": "^2.9.9",
-    "vite-plugin-cesium": "^1.2.22"
+    "vite-plugin-cesium": "^1.2.22",
+    "pbf-loader": "^1.1.0"
   },
   "browserslist": [
     "defaults",
