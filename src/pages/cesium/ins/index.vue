@@ -3,7 +3,7 @@
 </template>
 
 <script lang="ts" setup>
-import {Viewer} from 'cesium'
+import {ArcGisMapServerImageryProvider, Viewer} from 'cesium'
 import {onMounted, ref} from "vue";
 
 const cesiumContainer = ref<HTMLElement>(null)
@@ -22,6 +22,9 @@ const initCesium = () => {
     timeline: false,
     fullscreenButton: false,
     vrButton: false,
+    imageryProvider: new ArcGisMapServerImageryProvider({
+      url: "http://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineStreetPurplishBlue/MapServer",
+    }),
   })
 
   /* 显示帧率 */

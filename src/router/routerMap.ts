@@ -6,6 +6,7 @@ import {
   CssClip,
   Dialog,
   Douyin,
+  FullScreen,
   Homepage,
   ImgLazy,
   InfiniteScroll,
@@ -14,6 +15,7 @@ import {
   Link,
   NetWork,
   ProtoBuf,
+  selfIncreasingPage,
   SmartIsland,
   TypescriptInterface
 } from "@/pages";
@@ -110,6 +112,16 @@ const routerMap: RouteRecordRaw[] = [
     path: '/protobuf',
     name: "protobuf应用",
     component: ProtoBuf,
+  },
+  {
+    path: '/self-increasing',
+    name: "数字自增",
+    component: selfIncreasingPage,
+  },
+  {
+    path: '/full-screen',
+    name: "全屏API",
+    component: FullScreen,
   }
 ]
 

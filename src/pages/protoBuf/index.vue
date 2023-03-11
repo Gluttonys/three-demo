@@ -1,6 +1,5 @@
 <template>
   <link-block :links="links"></link-block>
-
 </template>
 
 <script lang="ts" setup>
@@ -43,7 +42,6 @@ const initPb = async () => {
 
   // const message = budDataProto.lookupType("SomeMessage")
   // console.log(message.toString())
-
 }
 
 

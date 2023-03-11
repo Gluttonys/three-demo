@@ -6,14 +6,15 @@
 <script lang="ts" setup>
 
 import {onMounted, ref} from "vue";
-import Init3D from "@/utils/init3D";
 import {BoxGeometry, DoubleSide, Mesh, MeshLambertMaterial, PlaneGeometry} from "three";
+import Init3D from "@/utils/init3D";
 
 
 const container = ref<HTMLElement>(null)
-
+ 
 const cubeSize = 10
 const unitAngle = Math.PI / 180
+
 
 /* 初始化3D场景 */
 onMounted(() => {
@@ -58,8 +59,7 @@ const initCube = () => {
     requestAnimationFrame(animation)
   }
 
-  requestAnimationFrame(animation)
+  animation()
 }
 </script>
-
 

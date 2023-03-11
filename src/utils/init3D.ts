@@ -24,7 +24,7 @@ class Init3D {
   baseRenderer: WebGLRenderer = new WebGLRenderer({antialias: true})
   // css2DRenderer: CSS2DRenderer = new CSS2DRenderer()
   // gridHelper: GridHelper = new GridHelper(GRID_WIDTH, GRID_DIVISIONS, 'red')
-  baseCamera: PerspectiveCamera = new PerspectiveCamera(70, this.width / this.height, 0.1, 5000)
+  baseCamera: PerspectiveCamera = null
 
   // 控制器
   orbitControls: OrbitControls
@@ -51,6 +51,9 @@ class Init3D {
 
     this.width = this.containerDom.offsetWidth
     this.height = this.containerDom.offsetHeight
+
+
+    this.baseCamera = new PerspectiveCamera(70, this.width / this.height, 0.1, 5000)
 
     this.initAxes()
     this.initBaseRender()

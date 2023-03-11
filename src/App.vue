@@ -1,6 +1,9 @@
 <template>
-  <header class="bg-blue-100 flex items-center p-4 text-white"
-          style="height: 60px">
+  <header class="bg-blue-100 flex items-center justify-between p-4 text-white" style="height: 60px">
+    <section class="left-nav"></section>
+    <section class="right-nav">
+      <FullScreen/>
+    </section>
   </header>
 
   <main class="w-screen flex" style="height: calc(100vh - 60px);">
@@ -24,7 +27,7 @@
 
     </a-menu>
 
-    <section class="overflow-hidden p-2 shadow h-full" style="width: calc(100vw - 256px)">
+    <section class="overflow-hidden p-2 shadow h-full bg-white" style="width: calc(100vw - 256px)">
       <router-view v-slot="{ Component }">
         <component :is="Component"/>
       </router-view>
@@ -40,6 +43,7 @@ import {computed, ref} from "vue";
 import {eq, forEach} from "lodash";
 import {RouteRecordRaw} from "vue-router";
 import router from "@/router";
+import FullScreen from '@/components/FullScreen/index.vue'
 
 
 const legalRouterMap = computed(() => {
