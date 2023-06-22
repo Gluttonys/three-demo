@@ -1,0 +1,5 @@
+export {default as Rect} from './Rect'
+export {default as StrokeRect} from './StrokeRect'
+export {default as Region} from './Region'
+export {default as CanvasImage} from './CanvasImage'
+export {default as CanvasText} from './CanvasText'

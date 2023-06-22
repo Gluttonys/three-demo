@@ -10,14 +10,13 @@ import {
   Homepage,
   ImgLazy,
   InfiniteScroll,
-  Ins,
   Interval,
-  Link,
   NetWork,
   ProtoBuf,
   selfIncreasingPage,
   SmartIsland,
-  TypescriptInterface
+  TypescriptInterface,
+  UseSimpleCanvas
 } from "@/pages";
 
 
@@ -72,22 +71,22 @@ const routerMap: RouteRecordRaw[] = [
     name: "图片 lazy 属性",
     component: ImgLazy,
   },
-  {
-    path: '/cesium',
-    name: "cesium学习",
-    children: [
-      {
-        path: "/cesium/link",
-        name: "学习网站",
-        component: Link,
-      },
-      {
-        path: "/cesium/ins",
-        name: "实例",
-        component: Ins,
-      },
-    ]
-  },
+  // {
+  //   path: '/cesium',
+  //   name: "cesium学习",
+  //   children: [
+  //     {
+  //       path: "/cesium/link",
+  //       name: "学习网站",
+  //       component: Link,
+  //     },
+  //     {
+  //       path: "/cesium/ins",
+  //       name: "实例",
+  //       component: Ins,
+  //     },
+  //   ]
+  // },
   {
     path: '/big-number',
     name: "大数字",
@@ -122,8 +121,13 @@ const routerMap: RouteRecordRaw[] = [
     path: '/full-screen',
     name: "全屏API",
     component: FullScreen,
+  },
+  {
+    path: '/use-simple-canvas',
+    name: "simple_canvas使用",
+    component: UseSimpleCanvas,
   }
 ]
-
+  
 
 export default routerMap

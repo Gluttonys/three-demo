@@ -6,6 +6,11 @@
     <a-button danger @click="closeFullScreen">关闭全屏</a-button>
   </section>
 
+
+  <input v-model="info" type="text">
+  <span key="info">{{ changeData(3) }}</span>
+  <span>{{ infos }}</span>
+
   <p class="font-bold my-4 text-2xl">电脑是否支持全屏操作: document.fullscreenEnabled => {{ enabled }}</p>
   <p class="font-bold my-4 text-2xl">
     电脑是否当前是否为全屏: document.fullscreenElement === null => {{ isFullScreen }}
@@ -23,13 +28,24 @@
       {{ isFullScreen ? '点击我退出全屏' : '点击我全屏该元素' }}
     </p>
   </section>
-  
+
 </template>
 
 <script lang="ts" setup>
 import LinkBlock from '@/components/LinkBlock/index.vue'
-import {ref} from "vue";
+import {computed, ref} from "vue";
 import {isNull} from "lodash";
+
+let info = ref('')
+
+function changeData(a) {
+  console.log(a)
+}
+
+const infos = computed(() => {
+  console.log('hello world')
+  return 'hello world'
+})
 
 
 const links: Base.Link[] = [
