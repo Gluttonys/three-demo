@@ -4,6 +4,7 @@ import {
   BigNumber,
   CssAspectRatio,
   CssClip,
+  CSSFilter,
   Dialog,
   Douyin,
   FullScreen,
@@ -65,6 +66,7 @@ const routerMap: RouteRecordRaw[] = [
     path: '/typescript-interface',
     name: "ts获取接口指定类型",
     component: TypescriptInterface,
+    
   },
   {
     path: '/img-lazy',
@@ -126,8 +128,13 @@ const routerMap: RouteRecordRaw[] = [
     path: '/use-simple-canvas',
     name: "simple_canvas使用",
     component: UseSimpleCanvas,
+  },
+  {
+    path: '/css-filter',
+    name: "css-filter",
+    component: CSSFilter,
   }
 ]
-  
+
 
 export default routerMap
