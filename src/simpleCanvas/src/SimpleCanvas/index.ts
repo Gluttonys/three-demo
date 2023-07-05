@@ -1,5 +1,5 @@
 import {assign, ceil, defaultTo, isNil, isNull, uniqueId} from "lodash";
-import {CanvasText} from "@/simpleCanvas/src/parts/inherit";
+import {CanvasText, Rect} from "@/simpleCanvas/src/parts/inherit";
 
 class SimpleCanvas {
   canvasDom: HTMLCanvasElement = null
@@ -35,10 +35,9 @@ class SimpleCanvas {
   }
 
   getCanvasWidthAndHeight(): [number, number] {
-    return [
-      this.getCanvasWidth(),
-      this.getCanvasHeight()
-    ]
+    const width = this.getCanvasWidth()
+    const height = this.getCanvasHeight()
+    return [width, height]
   }
 
   get2DCtx(): CanvasRenderingContext2D {
@@ -150,6 +149,20 @@ class SimpleCanvas {
     tempLinkDom.href = imageString
     tempLinkDom.click()
     tempLinkDom.remove()
+  }
+
+  /**
+   * @description 给画布设置背景颜色
+   * @param backgroundColor
+   */
+  setBackGround(backgroundColor: SimpleCanvas.Parts.RectOpt['backgroundColor']) {
+    const [width, height] = this.getCanvasWidthAndHeight()
+    new Rect({
+      width,
+      height,
+      backgroundColor
+    }).draw(this.get2DCtx())
+    return this
   }
 
   private init(canvasId: string) {
