@@ -1,5 +1,13 @@
 declare namespace SimpleCanvas {
 
+  type GridOpt = {
+    font?: Omit<Parts.TextOpt, 'content'>
+    line?: {
+      color?: string
+      spacing?: number
+    }
+  }
+
   namespace Parts {
 
     type Opt = {

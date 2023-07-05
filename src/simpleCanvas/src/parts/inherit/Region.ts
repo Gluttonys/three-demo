@@ -41,6 +41,7 @@ class Region extends BaseParts {
     this.ctx.moveTo(...topPos)
 
     _tempPath.forEach(pos => this.ctx.lineTo(...pos))
+    this.ctx.closePath()
     this.ctx.fill()
 
     this.ctx.restore()

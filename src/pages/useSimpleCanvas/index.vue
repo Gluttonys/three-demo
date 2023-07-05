@@ -4,35 +4,24 @@
           height="1000"
           style="background-color: #000000"
           width="1000"/>
+
+  <a-button class="mt-4" type="primary" @click="downloadImage"> 下载图片</a-button>
 </template>
 
 <script lang="ts" setup>
 import SimpleCanvas from "@/simpleCanvas/src/SimpleCanvas";
 import {onMounted} from "vue";
-import {CanvasText, Rect} from "@/simpleCanvas/src/parts/inherit";
+
+let simpleCanvas: SimpleCanvas = null
 
 onMounted(async () => {
-  const simpleCanvas = new SimpleCanvas('target')
-  const ctx = simpleCanvas.canvasCtx
-
-  new Rect({
-    width: 500,
-    height: 500,
-    backgroundColor: 'pink'
-  }).draw(ctx)
-
-  const text = new CanvasText({
-    x: 100,
-    y: 150,
-    fontSize: 50,
-    color: 'red',
-    content: '在黑暗中所有东西都将被揭开',
-    backgroundColor: 'green',
-    stroke: true
-  }).draw(ctx)
-
+  simpleCanvas = new SimpleCanvas('target')
+      .openGrid({line: {spacing: 25, color: '#626262'}, font: {fontSize: 12, color: '#ffffff'}})
 })
 
+const downloadImage = () => {
+  simpleCanvas.toGenerateImage('hello')
+}
 
 </script>
 
