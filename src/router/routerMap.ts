@@ -1,6 +1,7 @@
 import {RouteRecordRaw} from "vue-router";
 
 import {
+  Animation,
   BigNumber,
   CssAspectRatio,
   CssClip,
@@ -8,6 +9,7 @@ import {
   Dialog,
   Douyin,
   FullScreen,
+  G6,
   Homepage,
   ImgLazy,
   InfiniteScroll,
@@ -15,6 +17,7 @@ import {
   NetWork,
   ProtoBuf,
   selfIncreasingPage,
+  Sketchpad,
   SmartIsland,
   TypescriptInterface,
   UseSimpleCanvas
@@ -66,7 +69,7 @@ const routerMap: RouteRecordRaw[] = [
     path: '/typescript-interface',
     name: "ts获取接口指定类型",
     component: TypescriptInterface,
-    
+
   },
   {
     path: '/img-lazy',
@@ -133,6 +136,21 @@ const routerMap: RouteRecordRaw[] = [
     path: '/css-filter',
     name: "css-filter",
     component: CSSFilter,
+  },
+  {
+    path: '/sketchpad',
+    name: "canvas画板",
+    component: Sketchpad,
+  },
+  {
+    path: '/G6',
+    name: "G6图表库学习",
+    component: G6,
+  },
+  {
+    path: '/scroll-animation',
+    name: "滚动动画",
+    component: Animation,
   }
 ]
 

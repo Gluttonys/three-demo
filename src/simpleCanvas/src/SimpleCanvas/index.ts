@@ -1,10 +1,10 @@
-import {assign, ceil, defaultTo, isNil, isNull, uniqueId} from "lodash";
+import {assign, ceil, defaultTo, inRange, isNil, isNull, uniqueId} from "lodash";
 import {CanvasText, Rect} from "@/simpleCanvas/src/parts/inherit";
 
 class SimpleCanvas {
   canvasDom: HTMLCanvasElement = null
-  private canvasCtx: CanvasRenderingContext2D = null
 
+  private canvasCtx: CanvasRenderingContext2D = null
 
   constructor(canvasId: string) {
     this.init(canvasId)
@@ -71,17 +71,18 @@ class SimpleCanvas {
 
     const ctx = this.get2DCtx()
     const [width, height] = this.getCanvasWidthAndHeight()
+    
     const {line: {color: lineColor, spacing}, font: {color: fontColor, fontSize}} = defaultOpt
-    const column = ceil(width / spacing)  // 列
-    const row = ceil(height / spacing)    // 行
+    const column = ceil(height / spacing)  // 列
+    const row = ceil(width / spacing)    // 行
 
     ctx.save()
     ctx.strokeStyle = lineColor
 
-    for (let i = 0; i < column; i++) {
+    for (let i = 0; i <= column; i++) {
       ctx.beginPath()
       ctx.moveTo(0, i * spacing)
-      ctx.lineTo(this.getCanvasHeight(), i * spacing)
+      ctx.lineTo(this.getCanvasWidth(), i * spacing)
       ctx.closePath()
       ctx.stroke()
 
@@ -104,10 +105,10 @@ class SimpleCanvas {
       }).draw(this.get2DCtx())
     }
 
-    for (let j = 0; j < row; j++) {
+    for (let j = 0; j <= row; j++) {
       ctx.beginPath()
       ctx.moveTo(j * spacing, 0)
-      ctx.lineTo(j * spacing, this.getCanvasWidth())
+      ctx.lineTo(j * spacing, this.getCanvasHeight())
       ctx.closePath()
       ctx.stroke()
 
@@ -165,6 +166,28 @@ class SimpleCanvas {
     return this
   }
 
+  /**
+   * @description 变形 - 移动
+   */
+  deformationTransformations(x: number, y: number, callback: (ctx: CanvasRenderingContext2D) => any): SimpleCanvas {
+    this.canvasCtx.save()
+    this.canvasCtx.translate(x, y)
+    callback(this.get2DCtx())
+    this.canvasCtx.restore()
+    return this
+  }
+
+
+  deformationRotate(deg: number, callback: (ctx: CanvasRenderingContext2D) => any): SimpleCanvas {
+    if (!inRange(deg, 0, 360)) throw new RangeError("角度值异常，[0， 360]")
+    const _deg = (Math.PI / 180) * deg
+    this.canvasCtx.save()
+    this.canvasCtx.rotate(_deg)
+    callback(this.canvasCtx)
+    this.canvasCtx.restore()
+    return this
+  }
+
   private init(canvasId: string) {
     const canvasDom = document.getElementById(canvasId) as HTMLCanvasElement
     if (isNull(canvasDom)) throw new ReferenceError(`未能查找到ID为${canvasId}的dom结构`)
@@ -175,7 +198,6 @@ class SimpleCanvas {
     if (isNil(canvasDom.getContext)) throw new ReferenceError("抱歉，您的设备不支持Canvas")
     this.canvasCtx = canvasDom.getContext('2d')
   }
-
 }
 
 export default SimpleCanvas
