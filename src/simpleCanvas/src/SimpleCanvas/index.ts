@@ -1,13 +1,31 @@
-import {assign, ceil, defaultTo, inRange, isNil, isNull, uniqueId} from "lodash";
-import {CanvasText, Rect} from "@/simpleCanvas/src/parts/inherit";
+import {assign, ceil, defaultTo, first, inRange, isArray, isEmpty, isNil, isNull, sortBy, uniqueId} from "lodash";
+import {CanvasText, Line, Rect} from "@/simpleCanvas/src/parts/inherit";
+import BaseParts from "@/simpleCanvas/src/parts/BaseParts";
+import Layer from "@/simpleCanvas/src/Layer";
+
 
 class SimpleCanvas {
-  canvasDom: HTMLCanvasElement = null
+  /**
+   * @description 存放所有图层元素的 map
+   * @private
+   */
+  private layers: Layer[] = []
 
+  private defaultLayer: Layer = new Layer({name: uniqueId("default_layer_"), zIndex: 0})
+  private gridLayer: Layer = new Layer({name: uniqueId("default_grid_layer_"), zIndex: -1})
+  private baseLayer: Layer = new Layer({name: uniqueId("base_layer_"), zIndex: -2})
+
+  private canvasDom: HTMLCanvasElement = null
   private canvasCtx: CanvasRenderingContext2D = null
 
+  private gridVisible: boolean = false
+  private gridOpt: SimpleCanvas.GridOpt = null
+
+  private backgroundColor: SimpleCanvas.Parts.RectOpt['backgroundColor'] = '#ffffff'
+
   constructor(canvasId: string) {
-    this.init(canvasId)
+    this.initCanvas(canvasId)
+    this.initLayers()
   }
 
   setWidth(width: number): SimpleCanvas {
@@ -45,6 +63,13 @@ class SimpleCanvas {
   }
 
   /**
+   * @description 获取 canvas dom 引用
+   */
+  getCanvasDom(): HTMLCanvasElement {
+    return this.canvasDom
+  }
+
+  /**
    * @description 清除画布
    */
   clean() {
@@ -56,6 +81,8 @@ class SimpleCanvas {
    * @description 开启网格线
    */
   openGrid(gridOpt?: SimpleCanvas.GridOpt): SimpleCanvas {
+    this.gridVisible = true
+    this.gridOpt = defaultTo(gridOpt, null)
 
     const defaultOpt: SimpleCanvas.GridOpt = {
       font: {
@@ -69,50 +96,53 @@ class SimpleCanvas {
     }
     assign(defaultOpt, defaultTo(gridOpt, {}))
 
-    const ctx = this.get2DCtx()
     const [width, height] = this.getCanvasWidthAndHeight()
-    
+
     const {line: {color: lineColor, spacing}, font: {color: fontColor, fontSize}} = defaultOpt
     const column = ceil(height / spacing)  // 列
     const row = ceil(width / spacing)    // 行
 
-    ctx.save()
-    ctx.strokeStyle = lineColor
-
     for (let i = 0; i <= column; i++) {
-      ctx.beginPath()
-      ctx.moveTo(0, i * spacing)
-      ctx.lineTo(this.getCanvasWidth(), i * spacing)
-      ctx.closePath()
-      ctx.stroke()
+      const line = new Line({
+        pointList: [
+          [0, i * spacing],
+          [width, i * spacing]
+        ],
+        color: lineColor
+      })
 
-      new CanvasText({
+      const topText = new CanvasText({
         content: `${i * spacing}`,
         textBaseline: 'middle',
         fontSize,
         color: fontColor,
         x: 0,
         y: i * spacing
-      }).draw(this.get2DCtx())
-      new CanvasText({
+      })
+      const bottomText = new CanvasText({
         content: `${i * spacing}`,
         fontSize,
         color: fontColor,
-        x: this.getCanvasWidth(),
+        x: width,
         y: i * spacing,
         textBaseline: 'middle',
         direction: 'rtl'
-      }).draw(this.get2DCtx())
+      })
+
+      this.gridLayer.add([line, topText, bottomText])
     }
 
     for (let j = 0; j <= row; j++) {
-      ctx.beginPath()
-      ctx.moveTo(j * spacing, 0)
-      ctx.lineTo(j * spacing, this.getCanvasHeight())
-      ctx.closePath()
-      ctx.stroke()
 
-      new CanvasText({
+      const line = new Line({
+        pointList: [
+          [j * spacing, 0],
+          [j * spacing, height]
+        ],
+        color: lineColor
+      })
+
+      const leftText = new CanvasText({
         content: `${j * spacing}`,
         textBaseline: 'hanging',
         textAlign: 'center',
@@ -120,20 +150,21 @@ class SimpleCanvas {
         color: fontColor,
         x: j * spacing,
         y: 0
-      }).draw(this.get2DCtx())
-      new CanvasText({
+      })
+      const rightText = new CanvasText({
         content: `${j * spacing}`,
         fontSize,
         color: fontColor,
         x: j * spacing,
-        y: this.getCanvasHeight(),
+        y: height,
         textBaseline: 'alphabetic',
         direction: 'rtl',
         textAlign: 'center',
-      }).draw(this.get2DCtx())
+      })
+
+      this.gridLayer.add([line, leftText, rightText])
     }
 
-    ctx.restore()
     return this
   }
 
@@ -155,15 +186,20 @@ class SimpleCanvas {
   /**
    * @description 给画布设置背景颜色
    * @param backgroundColor
+   *
+   * !!! todo 重新实现
    */
   setBackGround(backgroundColor: SimpleCanvas.Parts.RectOpt['backgroundColor']) {
+    this.backgroundColor = backgroundColor
     const [width, height] = this.getCanvasWidthAndHeight()
-    new Rect({
+
+    this.baseLayer.add(new Rect({
       width,
       height,
-      backgroundColor
-    }).draw(this.get2DCtx())
-    return this
+      backgroundColor: this.backgroundColor
+    }))
+
+    return this.reDraw()
   }
 
   /**
@@ -177,7 +213,6 @@ class SimpleCanvas {
     return this
   }
 
-
   deformationRotate(deg: number, callback: (ctx: CanvasRenderingContext2D) => any): SimpleCanvas {
     if (!inRange(deg, 0, 360)) throw new RangeError("角度值异常，[0， 360]")
     const _deg = (Math.PI / 180) * deg
@@ -188,7 +223,72 @@ class SimpleCanvas {
     return this
   }
 
-  private init(canvasId: string) {
+  add(part: BaseParts, reDraw?: boolean): SimpleCanvas
+  add(parts: BaseParts[], reDraw?: boolean): SimpleCanvas
+  add(layer: Layer, reDraw?: boolean): SimpleCanvas
+  add(layers: Layer[], reDraw?: boolean): SimpleCanvas
+  add(partOrLayer: BaseParts | BaseParts[] | Layer | Layer[], reDraw: boolean = true): SimpleCanvas {
+    if (isArray(partOrLayer)) {
+      if (isEmpty(partOrLayer)) return
+      const firstEle = first(partOrLayer as unknown[])
+
+      if (firstEle instanceof BaseParts) {
+        this.defaultLayer.add(partOrLayer as BaseParts[])
+      } else if (firstEle instanceof Layer) {
+        (partOrLayer as Layer[]).forEach(layer => layer.parent = this)
+        this.layers.push(...partOrLayer as Layer[])
+      } else {
+        throw new ReferenceError("错误的参数值，请传入组件或图层")
+      }
+    } else {
+      if (partOrLayer instanceof BaseParts) {
+        this.defaultLayer.add(partOrLayer as BaseParts)
+      } else if (partOrLayer instanceof Layer) {
+        partOrLayer.parent = this
+        this.layers.push(partOrLayer)
+      } else {
+        throw new ReferenceError("错误的参数值，请传入组件或图层")
+      }
+    }
+
+    if (reDraw) {
+      return this.reDraw()
+    } else {
+      return this
+    }
+  }
+
+  reDraw(): SimpleCanvas {
+    return this.draw()
+  }
+
+  /**
+   * @description 重新绘制 canvas
+   * @private
+   */
+  private draw(): SimpleCanvas {
+    this.clean()
+    const ctx = this.get2DCtx()
+
+    const sortLayers = sortBy(this.layers, "zIndex")
+    sortLayers.forEach(layer => layer.draw(ctx))
+    return this
+  }
+
+  /**
+   * @description 初始化默认图层
+   * @private
+   */
+  private initLayers() {
+    this.add([this.defaultLayer, this.gridLayer, this.baseLayer], false)
+  }
+
+  /**
+   * @description 初始化 canvas
+   * @param canvasId
+   * @private
+   */
+  private initCanvas(canvasId: string) {
     const canvasDom = document.getElementById(canvasId) as HTMLCanvasElement
     if (isNull(canvasDom)) throw new ReferenceError(`未能查找到ID为${canvasId}的dom结构`)
 
@@ -198,6 +298,8 @@ class SimpleCanvas {
     if (isNil(canvasDom.getContext)) throw new ReferenceError("抱歉，您的设备不支持Canvas")
     this.canvasCtx = canvasDom.getContext('2d')
   }
+
+
 }
 
 export default SimpleCanvas

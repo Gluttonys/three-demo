@@ -48,14 +48,6 @@ class CanvasImage extends BaseParts {
     })
   }
 
-  remove(): CanvasImage {
-    const {x, y, width, height} = this.defaultOpt
-
-    this.ctx.clearRect(x, y, width, height)
-
-    return this
-  }
-
   setOpt(partsOpt?: ImageOpt): CanvasImage {
     assign(this.defaultOpt, defaultTo(partsOpt, {}))
     return this
@@ -65,8 +57,7 @@ class CanvasImage extends BaseParts {
    * @description 平铺图片
    */
   toTile(smallImgWidth: number, smallImgHeight: number) {
-    this.remove()
-
+    
     if (isNull(this.imageDom)) this.generateImageDom()
     this.setBackground()
 

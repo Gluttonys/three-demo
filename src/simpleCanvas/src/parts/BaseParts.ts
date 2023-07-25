@@ -36,13 +36,6 @@ abstract class BaseParts {
   abstract draw(ctx: CanvasRenderingContext2D): BaseParts | Promise<BaseParts>
 
   /**
-   * @description 销毁自身元素
-   *
-   * todo 需要考虑图形放大旋转问题
-   */
-  abstract remove(): BaseParts
-
-  /**
    * @description 检查 ctx 合法性
    * @param ctx
    * @protected

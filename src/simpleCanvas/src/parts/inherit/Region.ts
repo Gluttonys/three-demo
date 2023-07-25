@@ -1,6 +1,6 @@
 import BaseParts from "@/simpleCanvas/src/parts/BaseParts";
 import SimpleCanvas from "@/simpleCanvas/src/SimpleCanvas";
-import {assign, cloneDeep, defaultTo, first, isEmpty, last} from "lodash";
+import {assign, cloneDeep, defaultTo, isEmpty} from "lodash";
 
 
 type RegionOpt = SimpleCanvas.Parts.RegionOpt
@@ -48,30 +48,6 @@ class Region extends BaseParts {
     return this
   }
 
-
-  remove(): Region {
-    const {pathList} = this.defaultOpt
-
-    const xList = []
-    const yList = []
-
-    pathList.forEach(pos => {
-      xList.push(pos[0])
-      yList.push(pos[1])
-    })
-
-    xList.sort()
-    yList.sort()
-
-    const minX = first(xList)
-    const minY = first(yList)
-
-    const maxX = last(xList)
-    const maxY = last(yList)
-
-    this.ctx.clearRect(minX, minY, maxX - minX, maxY - minY)
-    return this
-  }
 
 }
 

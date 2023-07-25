@@ -72,16 +72,7 @@ class CanvasText extends BaseParts {
     this.ctx.restore()
     return this
   }
-
-  remove(): CanvasText {
-    const {x, y, fontSize, maxWidth} = this.defaultOpt
-    const {width, fontBoundingBoxAscent} = this.textMetrics
-
-    let _width = eq(maxWidth, Number.MAX_SAFE_INTEGER) ? width : maxWidth
-    this.ctx.clearRect(x, y - fontBoundingBoxAscent, _width, fontSize)
-
-    return this;
-  }
+  
 
   setOpt(partsOpt?: CanvasTextOpt): CanvasText {
     assign(this.defaultOpt, defaultTo(partsOpt, {}))

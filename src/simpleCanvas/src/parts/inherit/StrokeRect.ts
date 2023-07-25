@@ -38,18 +38,6 @@ class StrokeRect extends BaseParts {
     return this
   }
 
-  /**
-   * @description
-   * todo 范围清除 并非仅该边框
-   */
-  remove(): StrokeRect {
-    const {x, y, width, height, lineWidth} = this.defaultOpt
-
-    const doubleWidth = lineWidth * 2
-    this.ctx.clearRect(x - lineWidth, y - lineWidth, width + doubleWidth, height + doubleWidth)
-    return this
-  }
-
 }
 
 export default StrokeRect
