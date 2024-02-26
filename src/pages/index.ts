@@ -20,4 +20,5 @@ export {default as CSSFilter} from './CSSFilter/index.vue'
 export {default as Sketchpad} from './Sketchpad/index.vue'
 export {default as G6} from './G6/index.vue'
 export {default as Animation} from './Animation/index.vue'
+export {default as Drag} from './Drag/index.vue'
 

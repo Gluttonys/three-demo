@@ -20,7 +20,8 @@ import {
   Sketchpad,
   SmartIsland,
   TypescriptInterface,
-  UseSimpleCanvas
+  UseSimpleCanvas,
+  Drag
 } from "@/pages";
 
 
@@ -28,6 +29,11 @@ const routerMap: RouteRecordRaw[] = [
   {
     path: '/',
     redirect: '/home-page'
+  },
+  {
+    path: '/drag',
+    name: "拖拽测试",
+    component: Drag,
   },
   {
     path: '/home-page',

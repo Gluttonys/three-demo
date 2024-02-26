@@ -8,7 +8,7 @@
 
   <main class="w-screen flex" style="height: calc(100vh - 60px);">
 
-    <a-menu v-model:selected-keys="selectMenuKey" class="h-full" style="width: 256px" theme="dark">
+    <a-menu v-model:selected-keys="selectMenuKey" class="h-full overflow-auto" style="width: 256px" theme="dark">
 
       <template v-for="menu in legalRouterMap" :key="menu.path">
         <a-menu-item v-if="!menu.children?.length" :key="menu.path" @click="router.push(menu.path)">
